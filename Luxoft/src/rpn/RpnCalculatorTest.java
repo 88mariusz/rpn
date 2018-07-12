@@ -80,6 +80,24 @@ public class RpnCalculatorTest {
 		//then
 		assertEquals(23, result.getValue());
 	}
+
+	@Test
+	public void testMinusAndMultiply() {
+		//given
+		List<RpnToken> calculation = new ArrayList<>();
+		calculation.add(of(4));
+		calculation.add(of(1));
+		calculation.add(MINUS);
+		calculation.add(of(5));
+		calculation.add(MULTIPLY);
+		RpnCalculator rpnCalculator = new RpnCalculator(calculation);
+		
+		//when
+		Operand result = rpnCalculator.calculate();
+		
+		//then
+		assertEquals(15, result.getValue());
+	}
 	
 	@Test
 	public void testComplex() {
