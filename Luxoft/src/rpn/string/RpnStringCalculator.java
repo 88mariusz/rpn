@@ -5,7 +5,7 @@ import java.util.regex.Pattern;
 
 public class RpnStringCalculator {
 
-	private static final Pattern pattern = Pattern.compile("(\\d+)\\s(\\d+)\\s(\\D)");
+	private static final Pattern RPN_PATTERN = Pattern.compile("(\\d+)\\s(\\d+)\\s(\\D)");
 
 	private String calculation;
 
@@ -16,8 +16,8 @@ public class RpnStringCalculator {
 	public int calculate() {
 
 		while (calculation.contains(" ")) {
-			Matcher matcher = pattern.matcher(calculation);
-			System.out.println(matcher.find());
+			Matcher matcher = RPN_PATTERN.matcher(calculation);
+			matcher.find();
 
 			Integer operand1 = Integer.valueOf(matcher.group(1));
 			Integer operand2 = Integer.valueOf(matcher.group(2));
@@ -40,7 +40,6 @@ public class RpnStringCalculator {
 			}
 
 			calculation = calculation.replace(matcher.group(0), Integer.toString(tmpCalc));
-			System.out.println(calculation);
 		}
 
 		return Integer.valueOf(calculation);
