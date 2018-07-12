@@ -100,6 +100,24 @@ public class RpnCalculatorTest {
 	}
 	
 	@Test
+	public void testDivideAndMultiply() {
+		//given
+		List<RpnToken> calculation = new ArrayList<>();
+		calculation.add(of(12));
+		calculation.add(of(3));
+		calculation.add(DIVIDE);
+		calculation.add(of(2));
+		calculation.add(MULTIPLY);
+		RpnCalculator rpnCalculator = new RpnCalculator(calculation);
+		
+		//when
+		Operand result = rpnCalculator.calculate();
+		
+		//then
+		assertEquals(8, result.getValue());
+	}
+	
+	@Test
 	public void testComplex() {
 
 		//The infix expression ((15 ÷ (7 − (1 + 1))) × 3) − (2 + (1 + 1)) can be written like this in reverse Polish notation:
